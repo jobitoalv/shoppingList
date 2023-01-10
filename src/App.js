@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import List from './List'
 import Alert from './Alert'
+import { BsFillBasketFill } from "react-icons/bs";
 
 function App() {
   const [name, setName] = useState ('');
@@ -22,7 +23,7 @@ function App() {
   return <section className='section-center'>
     <form className='grocery-form' onSubmit={handleSubmit}>
       {alert.show && <Alert/>}
-      <h3>grocery bud</h3>
+      <h3>grocery bud <BsFillBasketFill/></h3>
       <div className='form-control'>
         <input type='text' className='grocery' placeholder='e.g eggs' value={name} onChange={(e) => setName(e.target.value)}/>
         <button type='submit' className='submit-btn'>
