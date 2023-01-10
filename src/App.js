@@ -23,6 +23,10 @@ function App() {
     <form className='grocery-form' onSubmit={handleSubmit}>
       {alert.show && <Alert/>}
       <h3>grocery bud</h3>
+      <div className='form-control'>
+        <input type='text'/>
+        <button type='submit'></button>
+      </div>
     </form>
     <div className='grocery-container'>
       <List/>
