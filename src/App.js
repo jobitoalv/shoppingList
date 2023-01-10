@@ -21,7 +21,7 @@ function App() {
 
   return <section className='section-center'>
     <form className='grocery-form' onSubmit={handleSubmit}>
-    
+      {alert.show && <Alert/>}
     </form>
     <div className='grocery-container'>
       <List/>
