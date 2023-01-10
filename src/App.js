@@ -11,10 +11,15 @@ function App() {
     {
       show:false,
       msg:'',
-      type:''
+      type:'',
     })
 
-  return <h2>grocery bud setup</h2>
+  return <section className='section-center'>
+    <div className='grocery-container'>
+      <List/>
+      <button className='clear-btn'>clear items</button>
+    </div>
+  </section>
 }
 
 export default App
