@@ -17,7 +17,15 @@ function App() {
 
     const handleSubmit = (e) => {
       e.preventDefault()
-      console.log('hehehe')
+      if(!name){
+
+      } else if (name && isEditing) {
+
+      } else {
+        const newItem = { id: new Date().getTime().toString(), title: name }
+        setList([...list, newItem])
+        setName('')
+      }
     }
 
   return <section className='section-center'>
