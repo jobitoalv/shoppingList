@@ -3,9 +3,18 @@ import List from './List'
 import Alert from './Alert'
 import { BsFillBasketFill } from "react-icons/bs";
 
+const getLocalStorage = () => {
+  let list = localStorage.getItem('list');
+  if (list) {
+    return (list = JSON.parse(localStorage.getItem('list')))
+  } else {
+    return []
+  }
+}
+
 function App() {
   const [name, setName] = useState ('');
-  const [list, setList] = useState ([]);
+  const [list, setList] = useState (getLocalStorage());
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState(
@@ -63,9 +72,11 @@ function App() {
     useEffect (() => {
       localStorage.setItem('list', JSON.stringify(list))
     },[list])
-  return <section className='section-center'>
+
+  return (
+  <section className='section-center'>
     <form className='grocery-form' onSubmit={handleSubmit}>
-      {alert.show && <Alert {...alert} removeAlert ={showAlert}/>}
+      {alert.show && <Alert {...alert} removeAlert ={showAlert} list={list}/>}
       <h3>grocery bud <BsFillBasketFill/></h3>
       <div className='form-control'>
         <input type='text' className='grocery' placeholder='e.g eggs' value={name} onChange={(e) => setName(e.target.value)}/>
@@ -74,11 +85,14 @@ function App() {
         </button>
       </div>
     </form>
+    {list.length > 0 && (
     <div className='grocery-container'>
-      <List/>
+      <List item={list} removeItem={removeItem} editItem={editItem}/>
       <button className='clear-btn'onClick={clearList}>clear items</button>
     </div>
+    )}
   </section>
+  )
 }
 
 export default App
